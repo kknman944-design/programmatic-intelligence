@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmatic Intelligence | DV360 Benchmark Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Programmatic Intelligence</h1>
+            <p>DV360 Benchmark & Performance Analytics</p>
+        </div>
+    </header>
+    
+    <nav class="nav">
+        <div class="container">
+            <button class="nav-tab active" onclick="switchTab('overview')">Overview</button>
+            <button class="nav-tab" onclick="switchTab('pricing')">Pricing Benchmarks</button>
+            <button class="nav-tab" onclick="switchTab('performance')">Performance Metrics</button>
+            <button class="nav-tab" onclick="switchTab('predictions')">ML Predictions</button>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <div class="container">
+            <section id="overview" class="tab-content active">
+                <div class="filters">
+                    <label>Channel: <select id="channelFilter" onchange="updateDashboard()"><option value="">All Channels</option><option value="YouTube">YouTube</option><option value="Non-YouTube">Non-YouTube</option></select></label>
+                    <label>Device: <select id="deviceFilter" onchange="updateDashboard()"><option value="">All Devices</option><option value="Desktop">Desktop</option><option value="Smart Phone">Smart Phone</option></select></label>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-card"><h3>Total Cost</h3><p class="metric-value" id="totalCost">$0</p></div>
+                    <div class="metric-card"><h3>Avg CPM</h3><p class="metric-value" id="avgCPM">$0</p></div>
+                    <div class="metric-card"><h3>Avg CPV</h3><p class="metric-value" id="avgCPV">$0</p></div>
+                </div>
+                <h2>Trend Chart</h2>
+                <canvas id="trendChart"></canvas>
+            </section>
+            
+            <section id="pricing" class="tab-content">
+                <h2>Pricing Benchmarks</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card"><h3>CPM Median</h3><p class="metric-value" id="cpmMedian">$0</p></div>
+                    <div class="metric-card"><h3>vCPM Median</h3><p class="metric-value" id="vcpmMedian">$0</p></div>
+                </div>
+            </section>
+            
+            <section id="performance" class="tab-content">
+                <h2>Performance</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card"><h3>Avg CTR</h3><p class="metric-value" id="avgCTR">0%</p></div>
+                    <div class="metric-card"><h3>Avg View Rate</h3><p class="metric-value" id="avgVR">0%</p></div>
+                </div>
+            </section>
+            
+            <section id="predictions" class="tab-content">
+                <h2>ML Predictions</h2>
+                <form id="predictForm" onsubmit="getPrediction(event)">
+                    <label>Channel: <select id="predChannel"><option value="YouTube">YouTube</option><option value="Non-YouTube">Non-YouTube</option></select></label>
+                    <label>Advertiser ID: <input type="number" id="predAdvertiser" placeholder="6855283610"></label>
+                    <button type="submit">Predict</button>
+                </form>
+                <div id="predictionResult"></div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="footer"><p>&copy; 2025 Programmatic Intelligence</p></footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
